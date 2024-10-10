@@ -1,3 +1,9 @@
+# user defined
+notebooks/*
+!notebooks/research.ipynb
+**/*.html
+data/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

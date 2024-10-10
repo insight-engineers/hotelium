@@ -275,7 +275,9 @@ def crawling_from_booking(driver, url, skip_extract_reviews = False):
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"}
     resp = requests.get(url, headers=headers)
     page_soup = BeautifulSoup(resp.text, 'html.parser')
-
+    # dump page_soup to file
+    with open("page_soup.html", "w", encoding='utf-8') as file:
+        file.write(str(page_soup))
     # Get Save Name
     location = page_soup.find("input", {"name": "ss"}).get('value').replace(" ", "_")
     date = page_soup.find("div", {"data-testid": "searchbox-dates-container"}).text
