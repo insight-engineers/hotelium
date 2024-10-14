@@ -1,6 +1,7 @@
 # user defined
 notebooks/*
 !notebooks/research.ipynb
+!notebooks/module.ipynb
 **/*.html
 data/
 
