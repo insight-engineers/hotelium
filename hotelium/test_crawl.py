@@ -134,7 +134,10 @@ class Hotelium:
     def extract_hotel_address(self, soup):
         try:
             address = soup.find('div', {"class": "53cbfa6de f17adf7576"}).text.strip()
-            address = address.split('\n')[0]
+            try:
+                address = address.split('\n')[0]
+            except:
+                pass
             logging.info(f"Hotel address: {address}")
             return address
         except:
@@ -275,7 +278,7 @@ if __name__ == '__main__':
     
     hotelium = Hotelium()
     hotelium.initialize_remote_chromedriver()
-    hotelium.fetch_hotel_links(search_url, top_n=500)
+    hotelium.fetch_hotel_links(search_url, top_n=200)
     all_hotels_data = hotelium.extract_all_hotels_data()
     
     with open('hotels_data_2024-11-21.json', 'w') as f:
