@@ -46,8 +46,11 @@ class Hotelium:
         logging.info(f"Fetching hotel links from search_url: {search_url}")
         try:
             self.driver.get(search_url)
-            close_button = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[aria-label="Dismiss sign-in info."]')))
-            close_button.click()
+            try:
+                close_button = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[aria-label="Dismiss sign-in info."]')))
+                close_button.click()
+            except:
+                pass
 
             new_links = set()  # To store newly fetched links
             
