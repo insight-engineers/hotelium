@@ -133,11 +133,17 @@ class Hotelium:
 
     def extract_hotel_address(self, soup):
         try:
-            address = soup.find('div', {"class": "53cbfa6de f17adf7576"}).text.strip()
-            try:
-                address = address.split('\n')[0]
-            except:
-                pass
+            property_div = soup.find('div', {'data-testid': 'PropertyHeaderAddressDesktop-wrapper'})
+            if property_div:
+                # Find the span with the class 'f419a93f12'
+                address_span = property_div.find('span', class_='f419a93f12')
+
+            if address_span:
+                # Get the address text
+                address_div = address_span.find('div', class_='a53cbfa6de f17adf7576')
+                if address_div:
+                    address = address_div.contents[0].strip()
+
             logging.info(f"Hotel address: {address}")
             return address
         except:
